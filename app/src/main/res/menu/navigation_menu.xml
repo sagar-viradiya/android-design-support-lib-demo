@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navigation_menu">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/item_collapsing_toolbar"
+            android:title="Collapsing Toolbar"
+            android:checked="true"/>
+        <item
+            android:id="@+id/item_fab"
+            android:title="FAB"/>
+        <item
+            android:id="@+id/item_tab"
+            android:title="TAB"/>
+        <item
+            android:id="@+id/item_about"
+            android:title="About"/>
+
+    </group>
+
+</menu>

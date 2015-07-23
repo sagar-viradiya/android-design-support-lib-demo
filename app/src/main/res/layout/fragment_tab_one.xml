@@ -1,0 +1,18 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sagar.materialdesigndemo.TabOneFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/dummy_string"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="@dimen/textview_padding"
+        android:paddingRight="@dimen/textview_padding"/>
+
+</android.support.v4.widget.NestedScrollView>
