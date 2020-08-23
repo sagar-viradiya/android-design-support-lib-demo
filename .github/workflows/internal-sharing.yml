@@ -33,14 +33,14 @@ jobs:
       - name: Downloading build
         id: download
         uses: actions/download-artifact@v2
-          with:
-            name: bundle
+        with:
+          name: bundle
       - name: Uplaoding to IAS
         id: ias
         uses: sagar-viradiya/internal-app-sharing-action@v2
-          with:
-            serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACC_JSON }}
-            packageName: 'com.sagar.materialdesigndemo'
-            aabFilePath: ${{steps.download.outputs.download-path}}
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACC_JSON }}
+          packageName: 'com.sagar.materialdesigndemo'
+          aabFilePath: ${{steps.download.outputs.download-path}}
       - name: Logging Link
         run: echo ${{ steps.ias.outputs.downloadUrl }}
