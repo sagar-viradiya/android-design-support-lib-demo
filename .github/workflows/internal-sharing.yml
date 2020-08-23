@@ -37,7 +37,7 @@ jobs:
           name: bundle
       - name: Uplaoding to IAS
         id: ias
-        uses: sagar-viradiya/internal-app-sharing-action@v2
+        uses: sagar-viradiya/internal-app-sharing-action@v1.1.0
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACC_JSON }}
           packageName: 'com.sagar.materialdesigndemo'
