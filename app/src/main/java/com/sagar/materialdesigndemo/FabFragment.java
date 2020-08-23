@@ -5,15 +5,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sagar.adapters.RecyclerAdapter;
 import com.sagar.models.CardItemModel;
 
@@ -49,7 +50,7 @@ public class FabFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fab, container, false);
 
-        toolbar = (Toolbar)view.findViewById(R.id.fab_toolbar);
+        toolbar = view.findViewById(R.id.fab_toolbar);
 
         setupToolbar();
 
@@ -67,7 +68,6 @@ public class FabFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mainActivity.setupNavigationDrawer(toolbar);
     }
 
     private void setupToolbar(){

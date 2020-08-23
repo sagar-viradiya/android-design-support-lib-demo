@@ -3,15 +3,16 @@ package com.sagar.materialdesigndemo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.sagar.adapters.RecyclerAdapter;
 import com.sagar.models.CardItemModel;
 
@@ -48,7 +49,7 @@ public class CollapsingToolbarFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_collapsing_toolbar, container, false);
 
-        toolbar = (Toolbar)view.findViewById(R.id.toolbar);
+        toolbar = view.findViewById(R.id.toolbar);
 
         setupToolbar();
 
@@ -65,7 +66,6 @@ public class CollapsingToolbarFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        appCompatActivity.setupNavigationDrawer(toolbar);
     }
 
     private void setupToolbar(){

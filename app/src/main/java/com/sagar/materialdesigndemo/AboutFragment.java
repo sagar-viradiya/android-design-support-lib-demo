@@ -5,12 +5,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,9 +28,8 @@ public class AboutFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
-        mainActivity = (MainActivity)activity;
     }
 
     @Override
@@ -48,9 +48,8 @@ public class AboutFragment extends Fragment {
                     }
         });
 
-        toolbar = (Toolbar)view.findViewById(R.id.about_toolbar);
+        toolbar = view.findViewById(R.id.about_toolbar);
 
-        setupToolbar();
 
         return view;
     }
@@ -58,13 +57,8 @@ public class AboutFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mainActivity.setupNavigationDrawer(toolbar);
     }
 
-    private void setupToolbar(){
-        toolbar.setTitle(getString(R.string.about_fragment_title));
-        mainActivity.setSupportActionBar(toolbar);
-    }
 
 
 }

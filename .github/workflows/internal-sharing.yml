@@ -1,0 +1,46 @@
+name: Build, Upload to IAS and share on slack.
+on:
+  push:
+    branches:
+      - sagar/test/internal-app-sharing
+jobs:
+  build:
+    name: Building app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out branch
+        uses: actions/checkout@v2
+        with:
+          ref: 'sagar/test/internal-app-sharing'
+      - name: Settting up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Runing build command
+        run: ./gradlew bundleRelease
+      - name: Uploading build
+        uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: app/build/outputs/bundle/release/app-release.aab
+
+
+  upload_to_internal_app_sharing:
+    name: Uploading build to IAS
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Downloading build
+        id: download
+        uses: actions/download-artifact@v2
+          with:
+            name: bundle
+      - name: Uplaoding to IAS
+        id: ias
+        uses: sagar-viradiya/internal-app-sharing-action@v2
+          with:
+            serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACC_JSON }}
+            packageName: 'com.sagar.materialdesigndemo'
+            aabFilePath: ${{steps.download.outputs.download-path}}
+      - name: Logging Link
+        run: echo ${{ steps.ias.outputs.downloadUrl }}
