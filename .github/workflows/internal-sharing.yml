@@ -17,12 +17,12 @@ jobs:
         with:
           java-version: 1.8
       - name: Runing build command
-        run: ./gradlew bundleRelease
+        run: ./gradlew assembleRelease
       - name: Uploading build
         uses: actions/upload-artifact@v2
         with:
           name: bundle
-          path: app/build/outputs/bundle/release/app-release.aab
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
 
 
   upload_to_test_track:
@@ -39,5 +39,5 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACC_JSON }}
           packageName: 'com.sagar.materialdesigndemo'
-          releaseFiles: app-release.aab
+          releaseFiles: app-release-unsigned.apk
           track: internal
