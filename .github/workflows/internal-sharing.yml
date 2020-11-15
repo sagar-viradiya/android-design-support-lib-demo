@@ -23,11 +23,6 @@ jobs:
         with:
           name: bundle
           path: app/build/outputs/bundle/release/app-release.aab
-      - name: Uploading mapping
-        uses: actions/upload-artifact@v2
-        with:
-          name: mapping
-          path: app/build/outputs/mapping/release/mapping.txt
 
 
   upload_to_test_track:
@@ -39,10 +34,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: bundle
-      - name: Downloading mapping
-        uses: actions/download-artifact@v2
-        with:
-          name: mapping
       - name: Uploading to test track
         uses: r0adkll/upload-google-play@v1
         with:
@@ -50,4 +41,3 @@ jobs:
           packageName: 'com.sagar.materialdesigndemo'
           releaseFiles: app-release.aab
           track: internal
-          mappingFile: mapping.txt
