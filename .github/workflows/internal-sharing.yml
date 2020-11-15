@@ -1,4 +1,4 @@
-name: Build, Upload to IAS and share on slack.
+name: Build, Upload to test track.
 on:
   push:
     branches:
@@ -23,26 +23,31 @@ jobs:
         with:
           name: bundle
           path: app/build/outputs/bundle/release/app-release.aab
+      - name: Uploading mapping
+        uses: actions/upload-artifact@v2
+        with:
+          name: mapping
+          path: app/build/outputs/mapping/release/mapping.txt
 
 
-  upload_to_internal_app_sharing:
-    name: Uploading build to IAS
+  upload_to_test_track:
+    name: Uploading build to test track
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Downloading build
-        id: download
         uses: actions/download-artifact@v2
         with:
           name: bundle
-      - name: Logging download path
-        run: echo ${{ steps.download.outputs.download-path }}
-      - name: Uplaoding to IAS
-        id: ias
-        uses: sagar-viradiya/internal-app-sharing-action@v1.1.0
+      - name: Downloading mapping
+        uses: actions/download-artifact@v2
+        with:
+          name: mapping
+      - name: Uploading to test track
+        uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACC_JSON }}
           packageName: 'com.sagar.materialdesigndemo'
-          aabFilePath: 'app-release.aab'
-      - name: Logging Link
-        run: echo ${{ steps.ias.outputs.downloadUrl }}
+          releaseFiles: app-release.aab
+          track: internal
+          mappingFile: mapping.txt
